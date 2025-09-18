@@ -22,19 +22,25 @@
                 </a>
             </div>
             <div class="space-x-8 font-bold">
-                <a href="">Jobs</a>
+                <a href="/">Jobs</a>
                 <a href="">Careers</a>
                 <a href="">Salaries</a>
                 <a href="">Companies</a>
             </div>
             <div>
-                <a href="">Post a Job</a>
+                <a href="/jobs/create">Post a Job</a>
             </div>
         </nav>
 
         <main class="mt-8 max-w-[980px] mx-auto">
             {{ $slot }}
         </main>
+    </div>
+
+    <div class="footer mt-20">
+        <div class="border-t border-white/20 mt-10 pt-6 text-center text-gray-500">
+            &copy; 2024 Pixel Positions. All rights reserved.
+        </div>
     </div>
 </body>
 
