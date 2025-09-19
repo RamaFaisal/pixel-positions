@@ -16,9 +16,9 @@
     @vite('resources/css/app.css')
 </head>
 
-<body class="bg-quaternary text-secondary antialiased font-poppins justify-between h-screen">
+<body class="bg-quaternary text-secondary antialiased font-poppins justify-between flex flex-col min-h-screen">
     <nav
-        class="flex justify-between items-center p-5 px-10 border-b border-white/40 bg-primary/70 text-gray-200 shadow-2xl w-full">
+        class="flex justify-between items-center p-5 px-10 border-b border-white/40 bg-secondary text-gray-200 shadow-2xl w-full">
         <div>
             <a href="/">
                 <img src="{{ Vite::asset('resources/images/logo.svg') }}" alt="">
@@ -39,7 +39,7 @@
             <div class="space-x-4">
                 <a href="/jobs/create">Post a Job</a>
                 <a href="/logout"
-                    class="border-2 border-secondary hover:bg-tertiary hover:border-tertiary py-2 px-4 rounded-full transition ease-in-out delay-150 duration-300">Logout</a>
+                    class="bg-tertiary/75 hover:bg-tertiary/100 py-2 px-4 rounded-full transition ease-in-out delay-150 duration-300">Logout</a>
             </div>
         @endauth
 
@@ -52,15 +52,17 @@
 
     </nav>
 
-    <main class="mt-8 max-w-[980px] mx-auto">
-        {{ $slot }}
-    </main>
+    <div>
+        <main class="max-w-[980px] mx-auto">
+            {{ $slot }}
+        </main>
+    </div>
 
 
     <footer>
-        <div class="footer mt-12 flex right-[-50px] fixed bottom-0 w-full">
+        <div class="footer mt-12 w-full">
             <div class="border-t border-secondary"></div>
-            <div class="border-t border-white/20 py-6 text-center text-secondary font-poppins">
+            <div class="py-6 flex justify-center items-center text-secondary">
                 &copy; 2024 Pixel Positions. All rights reserved.
             </div>
         </div>

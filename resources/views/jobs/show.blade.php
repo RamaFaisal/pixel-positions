@@ -34,7 +34,7 @@
                     </p>
                     <p class="mt-6">
                         <a href="{{ $job->url }}"
-                            class="bg-primary/50 text-white font-bold py-2 px-6 rounded-full text-center hover:bg-primary/75 transition-colors">
+                            class="bg-tertiary/75 text-white font-bold py-2 px-6 rounded-full text-center hover:bg-tertiary/90 transition-colors">
                             Apply Now
                         </a>
                     </p>

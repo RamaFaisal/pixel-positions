@@ -1,5 +1,5 @@
 <x-layout>
-    <section class="max-w-4xl mx-auto mt-12">
+    <section class="max-w-4xl mx-auto">
         <h2 class="font-bold text-2xl mt-10 mb-6 text-center">Jobs for tag "{{ $tags->name }}"</h2>
 
         <div class="flex flex-wrap gap-2 mb-6 mx-auto max-w-4xl">
