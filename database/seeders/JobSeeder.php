@@ -16,12 +16,12 @@ class JobSeeder extends Seeder
     public function run(): void
     {
         $tag = Tag::factory(10)->create();
-        Job::factory(20)->hasAttached($tag)->create(new Sequence([
+        Job::factory(20)->hasAttached($tag->random(5))->create(new Sequence([
             'featured' => false,
-            'schedule' =>  'fulltime',
+            'schedule' =>  'Full-time',
         ], [
             'featured' => true,
-            'schedule' =>  'parttime',
+            'schedule' =>  'Part-time',
         ]));
     }
 }

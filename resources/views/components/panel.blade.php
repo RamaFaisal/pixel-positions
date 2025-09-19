@@ -1,5 +1,5 @@
 @php
-    $classes = 'p-4 bg-white/5 rounded-xl border border-transparent hover:border-blue-500 transition-colors duration-300 group';
+    $classes = 'p-4 bg-white/5 rounded-xl border border-secondary hover:border-primary hover:shadow-lg transition-colors duration-300 group';
 @endphp
 
 <div

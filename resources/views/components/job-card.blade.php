@@ -2,12 +2,12 @@
 
 <x-panel class="flex flex-col text-center">
     <a href="/jobs/{{ $job->slug }}">
-        <div class="text-sm font-normal text-white/50 mb-2 self-start">
+        <div class="text-sm font-normal text-secondary mb-2 self-start">
             {{ $job->employer->name }}
         </div>
         <div class="py-8">
-            <h3 class="group-hover:text-blue-500 transition-colors duration-300 font-bold">{{ $job->title }}</h3>
-            <p class="mt-2 text-sm">{{ $job->schedule }} - {{ $job->salary }}</p>
+            <h3 class="group-hover:text-primary transition-colors duration-300 font-bold capitalize">{{ $job->title }}</h3>
+            <p class="mt-2 text-sm">{{ $job->schedule }} - ${{ $job->salary }}</p>
         </div>
         <div class="flex justify-between items-center mt-auto">
             <div>
@@ -27,7 +27,7 @@
             </div>
 
             {{-- <img src="https://placehold.co/42" alt=""> --}}
-            <x-employer-logo :width="42"></x-employer-logo>
+            {{-- <x-employer-logo :width="42"></x-employer-logo> --}}
         </div>
     </a>
 </x-panel>

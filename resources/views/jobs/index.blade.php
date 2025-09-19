@@ -6,8 +6,8 @@
 
             <form action="/" method="GET" class="mt-6">
                 <input type="text" placeholder="Search for jobs" name="search" value="{{ old('search') }}"
-                    class="border border-white/10 rounded-xl px-4 py-3 bg-white/10 w-full max-w-2xl">
-                <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg ml-2">Search</button>
+                    class="border-2 border-primary rounded-xl px-4 py-3 bg-white/10 w-full max-w-2xl">
+                {{-- <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg ml-2">Search</button> --}}
             </form>
 
             @if (request('search'))
@@ -16,7 +16,7 @@
                         @foreach ($hasil as $hasil1)
                             {{-- <li class="py-2 border-b border-white/10"><a href="/jobs/{{ $hasil1->slug }}">{{ $hasil1->title }} at
                                     {{ $hasil1->employer->name }}</a></li> --}}
-                            <a href="/jobs/{{ $hasil1->slug }}"><div class="text-sm border text-center bg-gray-300 text-black rounded-4xl py-2 px-4 hover:bg-white hover:underline">{{ $hasil1->title }}</div></a>
+                            <a href="/jobs/{{ $hasil1->slug }}"><div class="text-sm border text-center bg-white text-black rounded-4xl py-2 px-4 hover:bg-primary transition-all duration-300">{{ $hasil1->title }}</div></a>
                         @endforeach
                     @else
                         <p>No results for "{{ request('search') }}"</p>
@@ -29,7 +29,7 @@
         </section>
 
         <section class="featured-jobs pt-10">
-            <x-section-heading>Featured Jobs</x-section-heading>
+            <x-section-heading>Poppular Jobs</x-section-heading>
 
             <div class="grid grid-cols-3 gap-6 mt-6">
                 @if ($featuredJobs->count() > 3)
@@ -46,7 +46,7 @@
         <section class="tags">
             <x-section-heading>Tags</x-section-heading>
 
-            <div class="space-x-2 mt-6">
+            <div class="space-x-2 space-y-2 mt-6 flex flex-wrap mx-auto">
                 @foreach ($tags as $tag)
                     <x-tag :$tag />
                 @endforeach

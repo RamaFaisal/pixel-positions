@@ -17,10 +17,11 @@ class EmployerFactory extends Factory
      */
     public function definition(): array
     {
+        $imageUrl = "https://picsum.photos/id/".rand(1, 1000)."/200/300";
         return [
             'user_id' => User::factory(),
             'name'=> fake()->name,
-            'logo'=> fake()->imageUrl(100, 100),
+            'logo'=> $imageUrl,
         ];
     }
 }

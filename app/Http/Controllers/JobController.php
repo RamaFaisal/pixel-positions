@@ -57,7 +57,8 @@ class JobController extends Controller
             'gambar' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'description' => 'required|min:5',
             'salary' => 'required|max:255',
-            'tags' => 'required|array|min:1',
+            'tags' => 'nullable|array|min:1',
+            'tags.*' => 'string|max:255',
             'location' => 'required|max:255',
             'schedule' => 'required|max:255',
             'url' => 'required|url|max:255',
@@ -71,8 +72,16 @@ class JobController extends Controller
             $featuredReq = true;
         }
 
+        $user = auth()->user();
+
+        if ($user && $user->employer) {
+            $employerId = $user->employer->id;
+        } else {
+            return redirect()->back()->withErrors(['message' => 'Anda harus memiliki profil perusahaan untuk posting pekerjaan.']);
+        }
+
         $job = Job::create([
-            'employer_id' => 1,
+            'employer_id' => $employerId,
             'title' => request('title'),
             'slug' => Str::slug(request('title')),
             'gambar' => $gambar->hashName(),
@@ -84,7 +93,20 @@ class JobController extends Controller
             'featured' => $featuredReq,
         ]);
 
-        $job->tags()->sync($request->input('tags'));
+        if ($request->filled('tags')) {
+            $tagIds = collect($request->input('tags'))->map(function ($tagName) {
+                $tagName = trim(strtolower($tagName));
+                if (empty($tagName)) {
+                    return null;
+                }
+                $tag = Tag::firstOrCreate(['name' => $tagName]);
+                return $tag->id;
+            })->filter()->unique();
+            
+            $job->tags()->sync($tagIds);
+        } else {
+            $job->tags()->detach();
+        }
 
         return redirect('/')->with('success', 'Job posted successfully!');
     }
@@ -100,8 +122,8 @@ class JobController extends Controller
             $query->whereIn('tags.id', $tagIds);
         })
             ->where('id', '!=', $job->id)
-            ->take(5)
-            ->get();
+            ->latest()
+            ->paginate(3);
 
         return view('jobs.show', [
             'job' => $job,

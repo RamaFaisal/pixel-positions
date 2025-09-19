@@ -7,41 +7,64 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Pixel Positions</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@400;500;600&display=swap">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/css/tom-select.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/tom-select@2.2.2/dist/css/tom-select.min.css" rel="stylesheet">
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+        rel="stylesheet">
     @vite('resources/css/app.css')
 </head>
 
-<body class="bg-[#060606] text-white antialiased font-hanken-grotesk">
-
-    <div class="px-10">
-        <nav class="flex justify-between items-center p-4 border-b border-white/20">
-            <div>
-                <a href="/">
-                    <img src="{{ Vite::asset('resources/images/logo.svg') }}" alt="">
-                </a>
-            </div>
-            <div class="space-x-8 font-bold">
-                <a href="/">Jobs</a>
-                <a href="">Careers</a>
-                <a href="">Salaries</a>
-                <a href="">Companies</a>
-            </div>
-            <div>
-                <a href="/jobs/create">Post a Job</a>
-            </div>
-        </nav>
-
-        <main class="mt-8 max-w-[980px] mx-auto">
-            {{ $slot }}
-        </main>
-    </div>
-
-    <div class="footer mt-20">
-        <div class="border-t border-white/20 mt-10 pt-6 text-center text-gray-500">
-            &copy; 2024 Pixel Positions. All rights reserved.
+<body class="bg-quaternary text-secondary antialiased font-poppins justify-between h-screen">
+    <nav
+        class="flex justify-between items-center p-5 px-10 border-b border-white/40 bg-primary/70 text-gray-200 shadow-2xl w-full">
+        <div>
+            <a href="/">
+                <img src="{{ Vite::asset('resources/images/logo.svg') }}" alt="">
+            </a>
         </div>
-    </div>
+        <div class="space-x-8 font-bold">
+            <a href="/">Jobs</a>
+            <a href="/">Careers</a>
+            <a href="/">Salaries</a>
+            <a href="/">Companies</a>
+        </div>
+
+        {{-- <div>
+                <a href="/jobs/create">Post a Job</a>
+            </div> --}}
+
+        @auth
+            <div class="space-x-4">
+                <a href="/jobs/create">Post a Job</a>
+                <a href="/logout"
+                    class="border-2 border-secondary hover:bg-tertiary hover:border-tertiary py-2 px-4 rounded-full transition ease-in-out delay-150 duration-300">Logout</a>
+            </div>
+        @endauth
+
+        @guest
+            <div class="space-x-4 font-bold">
+                <a href="/login">Log in</a>
+                <a href="/register">Register</a>
+            </div>
+        @endguest
+
+    </nav>
+
+    <main class="mt-8 max-w-[980px] mx-auto">
+        {{ $slot }}
+    </main>
+
+
+    <footer>
+        <div class="footer mt-12 flex right-[-50px] fixed bottom-0 w-full">
+            <div class="border-t border-secondary"></div>
+            <div class="border-t border-white/20 py-6 text-center text-secondary font-poppins">
+                &copy; 2024 Pixel Positions. All rights reserved.
+            </div>
+        </div>
+    </footer>
 </body>
 
 </html>

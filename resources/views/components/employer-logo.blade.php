@@ -1,3 +1,8 @@
-@props(['width' => 90, 'job'])
+@props(['job'])
 
-<img src="https://placehold.co/{{ $width }}" alt="" class="rounded-xl">
+<img src="{{ Str::startsWith($job->employer->logo, ['http://', 'https://'])
+    ? $job->employer->logo
+    : ($job->employer->logo
+        ? asset('storage/logo/' . $job->employer->logo)
+        : asset('images/no-image.png')) }}"
+    alt="" class="rounded-xl object-cover h-24 w-24">
