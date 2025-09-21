@@ -2,9 +2,12 @@
 
 namespace App\Providers;
 
+use App\Models\Job;
+use App\Models\User;
 use Illuminate\Contracts\Pagination\Paginator;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Pagination\Paginator as PaginationPaginator;
+use Illuminate\Support\Facades\View;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -25,5 +28,7 @@ class AppServiceProvider extends ServiceProvider
         Model::unguard();
 
         PaginationPaginator::useTailwind();
+        View::share('countuser', User::all()->count());
+        View::share('countjobs', Job::all()->count());
     }
 }

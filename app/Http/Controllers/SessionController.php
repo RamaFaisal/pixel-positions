@@ -40,6 +40,10 @@ class SessionController extends Controller
             ]);
         }
 
+        if (Auth::user()->role == 'admin') {
+            return redirect('/admin');
+        }
+
         request()->session()->regenerate();
 
         return redirect('/');

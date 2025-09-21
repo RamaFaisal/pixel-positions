@@ -4,31 +4,12 @@
         <section class="welcome text-center pt-10">
             <h1 class="font-bold text-4xl">Let's Find You A Great Job</h1>
 
-            <form action="/" method="GET" class="mt-6">
-                <input type="text" placeholder="Search for jobs" name="search" value="{{ old('search') }}"
-                    class="border-2 border-primary rounded-xl px-4 py-3 bg-white/10 w-full max-w-2xl">
-                {{-- <button type="submit" class="bg-blue-500 text-white px-4 py-2 rounded-lg ml-2">Search</button> --}}
-            </form>
-
-            @if (request('search'))
-                <div id="search-results" class="grid grid-cols-3 gap-4 mt-6 max-w-3xl mx-auto text-left">
-                    @if ($hasil->count() > 0)
-                        @foreach ($hasil as $hasil1)
-                            {{-- <li class="py-2 border-b border-white/10"><a href="/jobs/{{ $hasil1->slug }}">{{ $hasil1->title }} at
-                                    {{ $hasil1->employer->name }}</a></li> --}}
-                            <a href="/jobs/{{ $hasil1->slug }}"><div class="text-sm border text-center bg-white text-black rounded-4xl py-2 px-4 hover:bg-primary transition-all duration-300">{{ $hasil1->title }}</div></a>
-                        @endforeach
-                    @else
-                        <p>No results for "{{ request('search') }}"</p>
-                    @endif
-                </div>
-            @else
-                <h2 class="font-bold text-2xl mt-6">Popular Searches:</h2>
-                <p class="text-gray-400">Web Developer, Designer, Frontend, Backend, Fullstack, Remote</p>
-            @endif
+            <x-forms.form class="bg-transparent" action="/search">
+                <x-forms.input :label="false" name="search" placeholder="Search for jobs" />
+            </x-forms>
         </section>
 
-        <section class="featured-jobs pt-10">
+        <section class="featured-jobs">
             <x-section-heading>Poppular Jobs</x-section-heading>
 
             <div class="grid grid-cols-3 gap-6 mt-6">
@@ -64,11 +45,5 @@
             </div>
         </section>
     </div>
-
-    {{-- <script>
-        if (window.location.search.includes('search=')) {
-            window.history.replaceState({}, document.title, window.location.pathname);
-        }
-    </script> --}}
 
 </x-layout>
