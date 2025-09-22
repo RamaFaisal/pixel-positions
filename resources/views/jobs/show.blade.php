@@ -45,6 +45,16 @@
                     </div>
                 </div>
             </div>
+
+            <div class="col-span-12 mt-10">
+                <img src="{{ Str::startsWith($job->gambar, ['http://', 'https://'])
+                    ? $job->gambar
+                    : ($job->gambar
+                        ? asset('storage/' . $job->gambar)
+                        : asset('images/no-image.png')) }}"
+                    alt="image {{ $job->title }}"
+                    class="w-full h-56 object-cover rounded-lg border outline-2 outline-offset-2 outline-primary">
+            </div>
         </article>
     </main>
 

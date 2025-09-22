@@ -65,7 +65,7 @@ class JobController extends Controller
         ]);
 
         $gambar = $request->file('gambar');
-        $gambar->storeAs('gambar', $gambar->hashName(), 'public');
+        $fileGambar = $gambar->storeAs('gambar', $gambar->hashName(), 'public');
 
         $featuredReq = false;
         if ($request->input('schedule') !== 'Full-time') {
@@ -84,7 +84,7 @@ class JobController extends Controller
             'employer_id' => $employerId,
             'title' => request('title'),
             'slug' => Str::slug(request('title')),
-            'gambar' => $gambar->hashName(),
+            'gambar' => $fileGambar,
             'description' => request('description'),
             'salary' => request('salary'),
             'location' => request('location'),
@@ -102,13 +102,13 @@ class JobController extends Controller
                 $tag = Tag::firstOrCreate(['name' => $tagName]);
                 return $tag->id;
             })->filter()->unique();
-            
+
             $job->tags()->sync($tagIds);
         } else {
             $job->tags()->detach();
         }
 
-        return redirect('/')->with('success', 'Job posted successfully!');
+        return redirect()->route('home')->with('success', 'Job posted successfully!');
     }
 
     /**

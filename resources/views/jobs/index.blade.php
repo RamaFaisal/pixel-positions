@@ -6,7 +6,7 @@
 
             <x-forms.form class="bg-transparent" action="/search">
                 <x-forms.input :label="false" name="search" placeholder="Search for jobs" />
-            </x-forms>
+                </x-forms>
         </section>
 
         <section class="featured-jobs">
@@ -45,5 +45,15 @@
             </div>
         </section>
     </div>
-
+    <script>
+        @if (session('success'))
+            Swal.fire({
+                icon: 'success',
+                title: 'Berhasil!',
+                text: '{{ session('success') }}',
+                showConfirmButton: false,
+                timer: 2000
+            })
+        @endif
+    </script>
 </x-layout>

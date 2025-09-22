@@ -9,6 +9,7 @@
     @fluxAppearance
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=inter:400,500,600&display=swap" rel="stylesheet" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @vite('resources/css/app.css')
 </head>
 
@@ -45,11 +46,11 @@
         </flux:navbar>
 
         <flux:dropdown position="top" align="start">
-            <flux:profile avatar="https://fluxui.dev/img/demo/user.png" />
+            <flux:profile icon="user-circle" class="w-8 h-8 rounded-full" />
             <flux:menu>
                 <flux:menu.radio.group>
-                    <flux:menu.radio checked>Olivia Martin</flux:menu.radio>
-                    <flux:menu.radio>Truly Delta</flux:menu.radio>
+                    <flux:menu.radio checked>{{ auth()->user()->name }}</flux:menu.radio>
+                    {{-- <flux:menu.radio>Truly Delta</flux:menu.radio> --}}
                 </flux:menu.radio.group>
                 <flux:menu.separator />
                 <flux:menu.item icon="arrow-right-start-on-rectangle" href="/logout">Logout</flux:menu.item>
@@ -86,14 +87,13 @@
             <flux:sidebar.item icon="information-circle" href="#">Help</flux:sidebar.item>
         </flux:sidebar.nav>
     </flux:sidebar>
-
     <flux:main container>
         <div class="flex max-md:flex-col items-start">
             <div class="w-full md:w-[220px] pb-4 me-10">
                 <flux:navlist>
                     <flux:navlist.item href="/admin">Dashboard</flux:navlist.item>
-                    <flux:navlist.item href="/admin/user" badge="{{ $countuser }}">User</flux:navlist.item>
-                    <flux:navlist.item href="/admin/jobs" badge="{{ $countjobs }}">Jobs</flux:navlist.item>
+                    <flux:navlist.item href="{{ route('admin.users')}}" badge="{{ $countuser }}">User</flux:navlist.item>
+                    <flux:navlist.item href="{{ route('admin.jobs')}}" badge="{{ $countjobs }}">Jobs</flux:navlist.item>
                     {{-- <flux:navlist.item href="#">Payments</flux:navlist.item>
                     <flux:navlist.item href="#">Customers</flux:navlist.item>
                     <flux:navlist.item href="#">Billing</flux:navlist.item>

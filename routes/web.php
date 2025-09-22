@@ -15,11 +15,14 @@ use Illuminate\Support\Facades\Route;
 //     return view('welcome');
 // });
 
-Route::get('/', [JobController::class, 'index']);
+Route::get('/', [JobController::class, 'index'])->name('home');
 Route::get('/search', SearchController::class);
 
-Route::get('/jobs/create', [JobController::class, 'create'])->middleware('auth');
-Route::post('/jobs', [JobController::class, 'store']);
+Route::middleware('auth')->group(function () {
+  Route::get('/jobs/create', [JobController::class, 'create']);
+  Route::post('/jobs', [JobController::class, 'store']);
+});
+
 Route::get('/jobs/{job:slug}', [JobController::class, 'show']);
 
 Route::get('/tags/{tag:name}', [TagController::class, 'index']);
@@ -34,9 +37,15 @@ Route::middleware('guest')->group(function () {
 
 Route::get('/logout', [SessionController::class, 'destroy'])->middleware('auth');
 
-// Route::get('/admin', [AdminController::class, 'index'])->middleware('auth', 'admin');
-Route::get('/admin', function () {
-  return view('admin.index');
-})->middleware('auth', 'admin');
-Route::get('/admin/user', [AdminController::class, 'index'])->middleware('auth', 'admin');
-Route::get('/admin/jobs', [JobAdminController::class, 'index'])->middleware('auth', 'admin');
+Route::middleware('auth', 'admin')->group(function () {
+  Route::get('/admin', function () {
+    return view('admin.index');
+  })->name('admin');
+  Route::get('/admin/users', [AdminController::class, 'index'])->name('admin.users');
+  Route::put('/admin/users/{user}', [AdminController::class, 'update']);
+  Route::delete('/admin/{user}', [AdminController::class, 'destory']);
+  Route::get('/admin/jobs', [JobAdminController::class, 'index'])->name('admin.jobs');
+  Route::get('/admin/jobs/{job}/edit', [JobAdminController::class, 'edit'])->name('admin.jobs.edit');
+  Route::put('/admin/jobs/{job}', [JobAdminController::class, 'update']);
+  Route::delete('/admin/jobs/{job}', [JobAdminController::class, 'destroy']);
+});
