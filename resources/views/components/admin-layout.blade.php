@@ -16,9 +16,9 @@
 <body class="min-h-screen bg-white dark:bg-zinc-800">
     <flux:header container class="bg-zinc-50 dark:bg-zinc-900 border-b border-zinc-200 dark:border-zinc-700">
         <flux:sidebar.toggle class="lg:hidden" icon="bars-2" />
-        <flux:brand href="#" logo="https://fluxui.dev/img/demo/logo.png" name="Acme Inc."
+        <flux:brand href="#" logo="https://fluxui.dev/img/demo/logo.png" name="Pixel Positions"
             class="max-lg:hidden dark:hidden" />
-        <flux:brand href="#" logo="https://fluxui.dev/img/demo/dark-mode-logo.png" name="Acme Inc."
+        <flux:brand href="#" logo="https://fluxui.dev/img/demo/dark-mode-logo.png" name="Pixel Positions"
             class="max-lg:hidden! hidden dark:flex" />
 
         <flux:navbar class="-mb-px max-lg:hidden">
@@ -94,8 +94,8 @@
                     <flux:navlist.item href="/admin">Dashboard</flux:navlist.item>
                     <flux:navlist.item href="{{ route('admin.users')}}" badge="{{ $countuser }}">User</flux:navlist.item>
                     <flux:navlist.item href="{{ route('admin.jobs')}}" badge="{{ $countjobs }}">Jobs</flux:navlist.item>
-                    {{-- <flux:navlist.item href="#">Payments</flux:navlist.item>
-                    <flux:navlist.item href="#">Customers</flux:navlist.item>
+                    <flux:navlist.item href="{{ route('admin.reports')}}">Reports</flux:navlist.item>
+                    {{-- <flux:navlist.item href="#">Customers</flux:navlist.item>
                     <flux:navlist.item href="#">Billing</flux:navlist.item>
                     <flux:navlist.item href="#">Quotes</flux:navlist.item>
                     <flux:navlist.item href="#">Configuration</flux:navlist.item> --}}

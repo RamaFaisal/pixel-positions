@@ -68,6 +68,9 @@ class JobAdminController extends Controller
     public function destroy(Job $job)
     {
         $job->delete();
+        if ($job->gambar) {
+            Storage::disk('public')->delete($job->gambar);
+        }
         return redirect()->route('admin.jobs')->with('success', 'Job deleted successfully!');
     }
 }

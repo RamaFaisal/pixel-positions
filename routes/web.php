@@ -3,16 +3,20 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\JobAdminController;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\PDFController;
 use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SessionController;
 use App\Http\Controllers\TagController;
+use App\Mail\JobPosted;
 use App\Models\Tag;
 use Illuminate\Contracts\Session\Session;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
-// Route::get('/', function () {
-//     return view('welcome');
+// Route::get('/test', function () {
+//     Mail::to('f5a6f@example.com')->send(new JobPosted());
+//     return 'Email sent';
 // });
 
 Route::get('/', [JobController::class, 'index'])->name('home');
@@ -48,4 +52,7 @@ Route::middleware('auth', 'admin')->group(function () {
   Route::get('/admin/jobs/{job}/edit', [JobAdminController::class, 'edit'])->name('admin.jobs.edit');
   Route::put('/admin/jobs/{job}', [JobAdminController::class, 'update']);
   Route::delete('/admin/jobs/{job}', [JobAdminController::class, 'destroy']);
+
+  Route::get('admin/reports', [PDFController::class, 'index'])->name('admin.reports');
+  Route::get('admin/reports/pdf', [PDFController::class, 'generatePDF'])->name('admin.reports.pdf');
 });

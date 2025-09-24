@@ -1,5 +1,10 @@
 <x-admin-layout>
-    <h2 class="font-bold text-2xl text-center">Job Controller {{ auth()->user()->name }}</h2>
+    <h5 class="font-bold text-3xl text-center p-10">Job Controller {{ auth()->user()->name }}</h5>
+
+    <div class="">
+        <button class="bg-tertiary/75 text-white px-6 py-2 rounded-md font-semibold transition-colors duration-300 hover:bg-tertiary/100"><a href="{{ route('admin.reports.pdf')}}">Generate PDF</a></button>
+        <button class="bg-green-400 text-white px-6 py-2 rounded-md font-semibold transition-colors duration-300 hover:bg-green-500"><a href="#">Generate Excel</a"></button>
+    </div>
 
     <table id="user-admin-table" class="w-full mt-6 table-auto border-2 border-primary dark:border-white">
         <tr class="bg-primary">

@@ -5,9 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Job;
 use App\Http\Requests\StoreJobRequest;
 use App\Http\Requests\UpdateJobRequest;
+use App\Mail\JobPosted;
 use Illuminate\Support\Str;
 use App\Models\Tag;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 
 class JobController extends Controller
 {
@@ -107,6 +111,12 @@ class JobController extends Controller
         } else {
             $job->tags()->detach();
         }
+
+        $adminMail = User::where('role', 'admin')->pluck('email')->toArray();
+        $employerMail = $job->employer->user;
+        $mergeMail = array_merge($adminMail, [$employerMail->email]);
+        
+        Mail::to($mergeMail)->send(new JobPosted($job));
 
         return redirect()->route('home')->with('success', 'Job posted successfully!');
     }

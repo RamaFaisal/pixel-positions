@@ -29,9 +29,10 @@
             </div>
 
             <div>
-                <label for="description" class="block text-sm font-medium text-White">Description</label>
-                <textarea name="description" id="description" class="mt-1 block w-full border border-primary rounded-md shadow-sm p-2"
-                    required></textarea>
+                <label for="description" class="block text-sm font-medium text-White">Description <span
+                        class="text-red-500 font-light">*required min 10 character</span></label>
+                <textarea name="description" id="description" value="{{ old('description') }}"
+                    class="mt-1 block w-full border border-primary rounded-md shadow-sm p-2" required></textarea>
                 @error('description')
                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                 @enderror
@@ -62,7 +63,8 @@
 
             <div>
                 <label for="tags" class="block text-sm font-medium ">Tags</label>
-                <select id="select-tags" name="tags[]" multiple placeholder="Pilih atau ketik tag..."
+                <select id="select-tags" name="tags[]" multiple
+                    placeholder="Pilih atau ketik tag..."
                     class="mt-1 block w-full border border-primary rounded-md shadow-sm p-2 bg-transparent">
                     @foreach ($tags as $tag)
                         <option value="{{ $tag->name }}">{{ $tag->name }}</option>
@@ -73,7 +75,8 @@
             <div>
                 <label for="location" class="block text-sm font-medium text-White">Location</label>
                 <input type="text" name="location" id="location"
-                    class="mt-1 block w-full border border-primary rounded-md shadow-sm p-2" required>
+                    class="mt-1 block w-full border border-primary rounded-md shadow-sm p-2"
+                    value="{{ old('location') }}" required>
                 @error('location')
                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                 @enderror
@@ -101,7 +104,8 @@
             <div>
                 <label for="url" class="block text-sm font-medium text-White">Application URL</label>
                 <input type="text" name="url" id="url"
-                    class="mt-1 block w-full border border-primary rounded-md shadow-sm p-2" required>
+                    class="mt-1 block w-full border border-primary rounded-md shadow-sm p-2"
+                    value="{{ old('url') }}" required>
                 @error('url')
                     <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
                 @enderror
