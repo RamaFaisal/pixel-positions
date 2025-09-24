@@ -2,8 +2,12 @@
     <h5 class="font-bold text-3xl text-center p-10">Job Controller {{ auth()->user()->name }}</h5>
 
     <div class="">
-        <button class="bg-tertiary/75 text-white px-6 py-2 rounded-md font-semibold transition-colors duration-300 hover:bg-tertiary/100"><a href="{{ route('admin.reports.pdf')}}">Generate PDF</a></button>
-        <button class="bg-green-400 text-white px-6 py-2 rounded-md font-semibold transition-colors duration-300 hover:bg-green-500"><a href="#">Generate Excel</a"></button>
+        <a class="bg-tertiary/75 text-white px-6 py-2 rounded-md font-semibold transition-colors duration-300 hover:bg-tertiary/100"
+            href="{{ route('admin.reports.pdf') }}">Generate
+            PDF</a>
+        <a class="bg-green-400 text-white px-6 py-2 rounded-md font-semibold transition-colors duration-300 hover:bg-green-500"
+            href="{{ route('admin.reports.excel') }}">Generate
+            Excel</a>
     </div>
 
     <table id="user-admin-table" class="w-full mt-6 table-auto border-2 border-primary dark:border-white">
@@ -29,7 +33,7 @@
                 @endforeach
               </td> --}}
                 <td class="text-center flex flex-row gap-4">
-                    <a href="{{  route('admin.jobs.edit', $job->id) }}"
+                    <a href="{{ route('admin.jobs.edit', $job->id) }}"
                         class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-xl">Edit</a>
                     <form action="/admin/jobs/{{ $job->id }}" method="post" id="formDelete{{ $job->id }}">
                         @csrf

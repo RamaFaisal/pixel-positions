@@ -97,7 +97,8 @@
     <div style="background-color: #f4f4f4; padding: 30px 0;">
         <div class="container">
             <div class="header">
-                <img src="{{ asset('logos/{{ $job->employer->logo }}')}}" alt="Logo Perusahaan">
+                {{-- <img src="{{ asset("logo/{{ $job->employer->logo }}") }}" alt="Logo Perusahaan" /> --}}
+                <x-employer-logo :job="$job" />
                 <h1>🎉 Lowongan Berhasil Diposting 🎉</h1>
             </div>
             <div class="content">
@@ -115,7 +116,7 @@
                 <a href="{{ url('/jobs/' . $job->slug) }}" class="link-button" style="color: #ffffff; text-decoration: none;">Lihat Lowongan</a>
             </div>
             <div class="footer">
-                <p>&copy; 2025 {{ $job->employer->name }}. Hak Cipta Dilindungi.</p>
+                <p>&copy; 2025 Pixel Positions. Hak Cipta Dilindungi.</p>
                 <p>Email ini dikirim secara otomatis. Mohon tidak membalas email ini.</p>
             </div>
         </div>

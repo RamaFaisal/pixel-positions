@@ -3,7 +3,7 @@
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\JobAdminController;
 use App\Http\Controllers\JobController;
-use App\Http\Controllers\PDFController;
+use App\Http\Controllers\PrintController;
 use App\Http\Controllers\RegisteredUserController;
 use App\Http\Controllers\SearchController;
 use App\Http\Controllers\SessionController;
@@ -53,6 +53,7 @@ Route::middleware('auth', 'admin')->group(function () {
   Route::put('/admin/jobs/{job}', [JobAdminController::class, 'update']);
   Route::delete('/admin/jobs/{job}', [JobAdminController::class, 'destroy']);
 
-  Route::get('admin/reports', [PDFController::class, 'index'])->name('admin.reports');
-  Route::get('admin/reports/pdf', [PDFController::class, 'generatePDF'])->name('admin.reports.pdf');
+  Route::get('admin/reports', [PrintController::class, 'index'])->name('admin.reports');
+  Route::get('admin/reports/pdf', [PrintController::class, 'generatePDF'])->name('admin.reports.pdf');
+  Route::get('admin/reports/excel', [PrintController::class, 'generateExcel'])->name('admin.reports.excel');
 });

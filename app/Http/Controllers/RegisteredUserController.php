@@ -39,7 +39,7 @@ class RegisteredUserController extends Controller
 
         $employerAttributes = $request->validate([
             'employer' => 'required|string|max:255',
-            'logo' => 'required|image|mimes:png,jpg,webp|max:2048',
+            'logo' => 'required|image|mimes:png,jpg,jpeg|max:2048',
         ]);
 
         $user = User::create($userAttributes);
