@@ -5,4 +5,4 @@
     : ($job->employer->logo
         ? asset('storage/logo/' . $job->employer->logo)
         : asset('images/no-image.png')) }}"
-    alt="" class="rounded-xl object-cover h-24 w-24">
+    alt="Logo {{ $job->employer->name }}" class="rounded-xl object-cover h-24 w-24">

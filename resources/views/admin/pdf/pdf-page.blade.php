@@ -42,10 +42,6 @@
             background-color: #f9f9f9;
             /* Efek garis zebra */
         }
-
-        #salary {
-            width: 80px;
-        }
     </style>
 </head>
 
@@ -66,7 +62,7 @@
                 <td>{{ $job->title }}</td>
                 <td>{{ $job->employer->name }}</td>
                 <td>{{ $job->location }}</td>
-                <td id="salary">$ {{ $job->salary }}</td>
+                <td style="width: 80px">$ {{ $job->salary }}</td>
                 <td>{{ $job->schedule }}</td>
                 <td style="width: 100px">{{ $job->created_at->format('Y-m-d') }}</td>
             </tr>

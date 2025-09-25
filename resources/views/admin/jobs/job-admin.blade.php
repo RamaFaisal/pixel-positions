@@ -3,7 +3,7 @@
 
     <div class="">
         <a class="bg-tertiary/75 text-white px-6 py-2 rounded-md font-semibold transition-colors duration-300 hover:bg-tertiary/100"
-            href="{{ route('admin.reports.pdf') }}">Generate
+            href="{{ route('admin.reports.pdf') }}" target="_blank">Generate
             PDF</a>
         <a class="bg-green-400 text-white px-6 py-2 rounded-md font-semibold transition-colors duration-300 hover:bg-green-500"
             href="{{ route('admin.reports.excel') }}">Generate

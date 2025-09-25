@@ -17,17 +17,21 @@ class PrintController extends Controller
         return view('admin.pdf.index', ['jobs' => $jobs]);
     }
 
-    public function generatePDF() {
+    public function generatePDF()
+    {
 
         $jobs = Job::latest()->get();
 
         $pdf = Pdf::loadView('admin.pdf.pdf-page', ['jobs' => $jobs]);
-
+        $pdf->setPaper('a4', 'landscape');
         return $pdf->stream('download.pdf');
     }
 
-    public function generateExcel() 
+    public function generateExcel()
     {
+        // return view('admin.pdf.excel-page', [
+        //     'jobs' => Job::all()
+        // ]);
         return Excel::download(new JobExport, 'jobs.xlsx');
     }
 }
