@@ -2,6 +2,7 @@
 
 namespace App\Providers;
 
+use App\Models\Employer;
 use App\Models\Job;
 use App\Models\User;
 use App\Observers\JobObserver;
@@ -31,6 +32,7 @@ class AppServiceProvider extends ServiceProvider
         PaginationPaginator::useTailwind();
         View::share('countuser', User::all()->count());
         View::share('countjobs', Job::all()->count());
+        View::share('countemployers', Employer::all()->count());
         Job::observe(JobObserver::class);
     }
 }

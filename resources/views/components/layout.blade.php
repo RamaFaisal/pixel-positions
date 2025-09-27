@@ -29,13 +29,9 @@
         <div class="space-x-8 font-bold">
             <a href="/">Jobs</a>
             <a href="/">Careers</a>
-            <a href="/">Employers</a>
+            <a href="{{ route('employer.index') }}">Employers</a>
             <a href="/">Profile</a>
         </div>
-
-        {{-- <div>
-                <a href="/jobs/create">Post a Job</a>
-            </div> --}}
 
         @auth
             <div class="space-x-4">

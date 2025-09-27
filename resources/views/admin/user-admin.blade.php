@@ -6,6 +6,7 @@
             <th>Name</th>
             <th>Email</th>
             <th>Role</th>
+            <th>Employer</th>
             <th>Action</th>
         </tr>
         @foreach ($users as $user)
@@ -13,6 +14,7 @@
                 <td class="text-left">{{ $user->name }}</td>
                 <td>{{ $user->email }}</td>
                 <td class="text-center">{{ $user->role }}</td>
+                <td class="text-center">{{ $user->employer->name ?? 'N/A' }}</td>
                 <td class="text-center flex flex-row gap-4 justify-center">
                     <button class="bg-yellow-500 hover:bg-yellow-600 text-white px-4 py-2 rounded-xl"
                         onClick="editUser('{{ $user->id }}', '{{ $user->name }}', '{{ $user->email }}', '{{ $user->role }}')">Edit</button>
