@@ -1,1 +1,1 @@
-<button {{ $attributes(['class' => 'bg-tertiary hover:bg-blue-600 transition-colors duration-300 rounded py-2 px-6 font-bold']) }}>{{ $slot }}</button>
+<button {{ $attributes(['class' => 'bg-tertiary/75 hover:bg-tertiary/100 transition-colors duration-300 rounded py-2 px-6 font-bold']) }}>{{ $slot }}</button>

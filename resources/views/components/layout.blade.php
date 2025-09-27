@@ -28,14 +28,9 @@
         </div>
         <div class="space-x-8 font-bold">
             <a href="/">Jobs</a>
-            @if (Auth::check() && Auth::user()->role == 'admin')
-                <a href="/">Careers</a>
-            @endif
-            @if (Auth::check())
-                <a href="/">Careers</a>
-            @endif
-            <a href="/">Salaries</a>
-            <a href="/">Companies</a>
+            <a href="/">Careers</a>
+            <a href="/">Employers</a>
+            <a href="/">Profile</a>
         </div>
 
         {{-- <div>

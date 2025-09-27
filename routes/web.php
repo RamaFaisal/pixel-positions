@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\AdminController;
+use App\Http\Controllers\GithubController;
+use App\Http\Controllers\GoogleController;
 use App\Http\Controllers\JobAdminController;
 use App\Http\Controllers\JobController;
 use App\Http\Controllers\PrintController;
@@ -10,27 +12,19 @@ use App\Http\Controllers\SessionController;
 use App\Http\Controllers\TagController;
 use App\Mail\JobPosted;
 use App\Models\Tag;
+use Illuminate\Auth\Events\Registered;
 use Illuminate\Contracts\Session\Session;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
-// Route::get('/test', function () {
-//     Mail::to('f5a6f@example.com')->send(new JobPosted());
-//     return 'Email sent';
-// });
+// Oauth
+Route::get('/auth/google/redirect', [GoogleController::class, 'googleRedirect'])->name('login.google');
+Route::get('/auth/google/callback', [GoogleController::class, 'googleCallback']);
 
-Route::get('/', [JobController::class, 'index'])->name('home');
-Route::get('/search', SearchController::class);
+Route::get('/auth/github/redirect', [GithubController::class, 'githubRedirect'])->name('login.github');
+Route::get('/auth/github/callback', [GithubController::class, 'githubCallback']);
 
-Route::middleware('auth')->group(function () {
-  Route::get('/jobs/create', [JobController::class, 'create']);
-  Route::post('/jobs', [JobController::class, 'store']);
-});
-
-Route::get('/jobs/{job:slug}', [JobController::class, 'show']);
-
-Route::get('/tags/{tag:name}', [TagController::class, 'index']);
-
+// Login
 Route::middleware('guest')->group(function () {
   Route::get('/register', [RegisteredUserController::class, 'create']);
   Route::post('/register', [RegisteredUserController::class, 'store']);
@@ -41,6 +35,19 @@ Route::middleware('guest')->group(function () {
 
 Route::get('/logout', [SessionController::class, 'destroy'])->middleware('auth');
 
+// Index Web
+Route::get('/', [JobController::class, 'index'])->name('home');
+Route::get('/search', SearchController::class);
+Route::get('/jobs/{job:slug}', [JobController::class, 'show']);
+Route::get('/tags/{tag:name}', [TagController::class, 'index']);
+
+// Create Jobs
+Route::middleware('auth', 'employer')->group(function () {
+  Route::get('/jobs/create', [JobController::class, 'create']);
+  Route::post('/jobs', [JobController::class, 'store']);
+});
+
+// Admin Panel
 Route::middleware('auth', 'admin')->group(function () {
   Route::get('/admin', function () {
     return view('admin.index');
