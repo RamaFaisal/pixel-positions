@@ -1,5 +1,5 @@
-@import 'tailwindcss';
-@import '../../vendor/livewire/flux/dist/flux.css';
+@import "tailwindcss";
+@import "../../vendor/livewire/flux/dist/flux.css";
 
 @source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
 @source '../../storage/framework/views/*.php';
@@ -9,16 +9,16 @@
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-    --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
-        'Segoe UI Symbol', 'Noto Color Emoji';
+    --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+        "Noto Color Emoji";
 
     --font-poppins: Poppins, sans-serif;
 
-    --color-primary: #08D9D6;
-    --color-secondary: #252A34;
-    --color-tertiary: #FF2E63;
-    --color-quaternary: #EAEAEA;
-
+    --color-primary: #08d9d6;
+    --color-secondary: #252a34;
+    --color-tertiary: #ff2e63;
+    --color-quaternary: #eaeaea;
 }
 
 .ts-control {
@@ -32,4 +32,8 @@
 
 #user-admin-table td {
     padding: 10px;
+}
+
+#imgEmployer {
+    height: 64px;
 }

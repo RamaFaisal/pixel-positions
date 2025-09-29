@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ActivityLog;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -39,5 +40,12 @@ class AdminController extends Controller
         $user->delete();
 
         return redirect()->route('admin.users')->with('success', 'User deleted successfully!');
+    }
+
+    public function logs() {
+        $logs = ActivityLog::latest()->paginate(10);
+        return view('admin.logs-admin', [
+            'logs' => $logs
+        ]);
     }
 }

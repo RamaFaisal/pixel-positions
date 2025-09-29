@@ -66,12 +66,16 @@ Route::middleware('auth', 'admin')->group(function () {
   Route::get('/admin/users', [AdminController::class, 'index'])->name('admin.users');
   Route::put('/admin/users/{user}', [AdminController::class, 'update']);
   Route::delete('/admin/{user}', [AdminController::class, 'destory']);
+
   Route::get('/admin/jobs', [JobAdminController::class, 'index'])->name('admin.jobs');
   Route::get('/admin/jobs/{job}/edit', [JobAdminController::class, 'edit'])->name('admin.jobs.edit');
   Route::put('/admin/jobs/{job}', [JobAdminController::class, 'update']);
   Route::delete('/admin/jobs/{job}', [JobAdminController::class, 'destroy']);
+
   Route::get('/admin/employers', [EmployerAdminController::class, 'index'])->name('admin.employers');
   Route::delete('/admin/employers/{employer}', [EmployerAdminController::class, 'destroy']);
+
+  Route::get('/admin/logs', [AdminController::class, 'logs'])->name('admin.logs');
 
   Route::get('admin/reports', [PrintController::class, 'index'])->name('admin.reports');
   Route::get('admin/reports/pdf', [PrintController::class, 'generatePDF'])->name('admin.reports.pdf');

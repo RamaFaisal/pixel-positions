@@ -52,4 +52,9 @@ class User extends Authenticatable
     {
         return $this->hasOne(Employer::class);
     }
+
+    public function activityLogs()
+    {
+        return $this->hasMany(ActivityLog::class);
+    }
 }

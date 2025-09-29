@@ -2,8 +2,11 @@
 
 namespace App\Observers;
 
+use App\Models\ActivityLog;
 use App\Models\Job;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Request;
 
 class JobObserver
 {
@@ -12,7 +15,14 @@ class JobObserver
      */
     public function created(Job $job): void
     {
-        Log::info('Job created: ' . $job->title);
+        if (Auth::check()) {
+            ActivityLog::create([
+                'user_id' => Auth::user()->id,
+                'activity' => 'Job created: ' . $job->title,
+                'ip_address' => Request::ip(),
+                'browser' => Request::header('User-Agent'),
+            ]);
+        }
     }
 
     /**
@@ -20,7 +30,14 @@ class JobObserver
      */
     public function updated(Job $job): void
     {
-        Log::info('Job updated: ' . $job->title);
+        if (Auth::check()) {
+            ActivityLog::create([
+                'user_id' => Auth::user()->id,
+                'activity' => 'Job updated: ' . $job->title,
+                'ip_address' => Request::ip(),
+                'browser' => Request::header('User-Agent'),
+            ]);
+        }
     }
 
     /**
@@ -28,7 +45,14 @@ class JobObserver
      */
     public function deleted(Job $job): void
     {
-        Log::info('Job deleted: ' . $job->title);
+        if (Auth::check()) {
+            ActivityLog::create([
+                'user_id' => Auth::user()->id,
+                'activity' => 'Job deleted: ' . $job->title,
+                'ip_address' => Request::ip(),
+                'browser' => Request::header('User-Agent'),
+            ]);
+        }
     }
 
     /**

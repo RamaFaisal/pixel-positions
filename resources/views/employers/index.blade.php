@@ -10,12 +10,12 @@
         @else
             <x-page-heading>Employers Profile</x-page-heading>
             <div class="flex flex-col items-center gap-2">
-                <img src="{{ Str::startsWith($employer->logo, ['http://', 'https://'])
+                <img id="imgEmployer" src="{{ Str::startsWith($employer->logo, ['http://', 'https://'])
                     ? $employer->logo
                     : ($employer->logo
                         ? asset('storage/logo/' . $employer->logo)
                         : asset('images/no-image.png')) }}"
-                    alt="Logo {{ $employer->name }}" class="h-28 w-28 border rounded-full object-fill">
+                    alt="Logo {{ $employer->name }}" class="h-14 lg:h-20 border rounded-full">
                 <p class="font-bold mt-4 capitalize text-2xl">{{ $employer->name }}</p>
                 <p>{{ $employer->user->email }}</p>
 

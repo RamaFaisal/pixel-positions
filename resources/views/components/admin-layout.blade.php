@@ -95,8 +95,8 @@
                     <flux:navlist.item href="{{ route('admin.users')}}" badge="{{ $countuser }}">User</flux:navlist.item>
                     <flux:navlist.item href="{{ route('admin.jobs')}}" badge="{{ $countjobs }}">Jobs</flux:navlist.item>
                     <flux:navlist.item href="{{ route('admin.employers')}}" badge="{{ $countemployers }}">Employers</flux:navlist.item>
-                    {{-- <flux:navlist.item href="#">Customers</flux:navlist.item>
-                    <flux:navlist.item href="#">Billing</flux:navlist.item>
+                    <flux:navlist.item href="{{ route('admin.logs') }}">Log Activity</flux:navlist.item>
+                    {{-- <flux:navlist.item href="#">Billing</flux:navlist.item>
                     <flux:navlist.item href="#">Quotes</flux:navlist.item>
                     <flux:navlist.item href="#">Configuration</flux:navlist.item> --}}
                 </flux:navlist>
